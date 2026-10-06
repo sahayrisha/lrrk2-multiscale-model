@@ -1,0 +1,13 @@
+parameter,best,lower95,upper95,verdict
+V_lrrk2,0.00373385,nan,nan,"FLAT: not identifiable from this data"
+g2019s_kin,2.19783,0.380262,nan,"OPEN one side: only bounded in one direction"
+Km_lrrk2,2.3342,nan,nan,"FLAT: not identifiable from this data"
+k_dephos,0.00756692,nan,nan,"FLAT: not identifiable from this data"
+k_prod_WT,0.00461818,0.000596435,nan,"OPEN one side: only bounded in one direction"
+g2019s_prod,1.66372,0.505741,3.60274,"identifiable"
+Vmax_CMA,0.0458619,nan,nan,"FLAT: not identifiable from this data"
+k_nuc,1.32548,nan,nan,"FLAT: not identifiable from this data"
+Vmax_clear,0.206896,nan,nan,"FLAT: not identifiable from this data"
+Km_MVB,0.0421052,nan,nan,"FLAT: not identifiable from this data"
+k_load,0.83822,nan,nan,"FLAT: not identifiable from this data"
+Km_load,1.1137,nan,nan,"FLAT: not identifiable from this data"

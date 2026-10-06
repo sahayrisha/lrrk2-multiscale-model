@@ -1,0 +1,32 @@
+Accepted sets: 334 of 600
+Best cost: 0.2923   threshold: 4.1323
+
+prediction                    median          5%         95%
+CI                            0.8105      0.7789      0.8688
+bliss_excess_pp               8.2761      6.3821      9.7363
+control_total_aSyn            0.0861      0.0657      0.1112
+control_agg_fraction          0.1861      0.1306      0.2460
+
+P(CI < 0.90), i.e. synergistic by this study's threshold: 99.7%
+
+Validation pass rates across the ensemble:
+  V1 genotype direction              100.0%   <- passes everywhere: robust
+  V2 kinase-inhibition collapse        0.0%   <- fails everywhere: structural, not parametric
+  V3 RAB35-blockade collapse           0.0%   <- fails everywhere: structural, not parametric
+
+Parameter spread across accepted sets:
+  parameter           median          5%         95%
+  V_lrrk2           0.003763    0.002944    0.004661
+  g2019s_kin            2.19       1.671       2.712
+  Km_lrrk2             2.322       1.767       2.962
+  k_dephos          0.007426    0.006052    0.009591
+  k_prod_WT         0.004567    0.003575    0.005959
+  g2019s_prod           1.66       1.276       2.117
+  Vmax_CMA           0.04542     0.03635     0.05839
+  k_nuc                1.324        1.07       1.659
+  Vmax_clear          0.2053      0.1567       0.268
+  Km_MVB             0.04196      0.0325     0.05348
+  k_load              0.8447      0.6751       1.074
+  Km_load                1.1      0.8816       1.396
+  Km_clear            0.5189      0.3006        0.83
+  Km_CMA              0.4929      0.3075      0.8075
