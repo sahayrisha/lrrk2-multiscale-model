@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version2/core" level="3" version="2">
+  <model id="PD_alphaSyn_v3_control" timeUnits="second">
+    <listOfUnitDefinitions>
+      <unitDefinition id="uM">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="-6" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="cell" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="pRab35" compartment="cell" initialConcentration="0.0485298750726808" substanceUnits="uM" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="aSyn" compartment="cell" initialConcentration="0.0913759412676667" substanceUnits="uM" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="aggregate" compartment="cell" initialConcentration="0.0190896191093502" substanceUnits="uM" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="MVB" compartment="cell" initialConcentration="0.298430047222545" substanceUnits="uM" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="exosomal" compartment="cell" initialConcentration="0.112882269694712" substanceUnits="uM" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="Km_CMA" value="0.5" constant="true"/>
+      <parameter id="Km_clear" value="0.5" constant="true"/>
+      <parameter id="k_deg_MVB" value="0.02" constant="true"/>
+      <parameter id="k_secrete" value="0.1" constant="true"/>
+      <parameter id="k_MVB" value="0.02" constant="true"/>
+      <parameter id="Km_lrrk2" value="1.71761205836721" constant="true"/>
+      <parameter id="k_dephos" value="0.152703843043933" constant="true"/>
+      <parameter id="Vmax_CMA" value="0.0677542476338364" constant="true"/>
+      <parameter id="k_nuc" value="1.62942830912154" constant="true"/>
+      <parameter id="Vmax_clear" value="0.314993178919373" constant="true"/>
+      <parameter id="Km_MVB" value="0.114087379873136" constant="true"/>
+      <parameter id="k_load" value="0.891304739963973" constant="true"/>
+      <parameter id="Km_load" value="0.430731968225444" constant="true"/>
+      <parameter id="Vmax_eff" value="0.207886328918882" constant="true"/>
+      <parameter id="k_prod_eff" value="0.0156988115143529" constant="true"/>
+      <parameter id="LAMP2A" value="0.2" constant="true"/>
+      <parameter id="rab35_block" value="1" constant="true"/>
+      <parameter id="LRRK2_active" value="0.1" constant="true"/>
+      <parameter id="Rab35_tot" value="1" constant="true"/>
+    </listOfParameters>
+    <listOfReactions>
+      <reaction id="Rab35_phosphorylation" reversible="false">
+        <listOfProducts>
+          <speciesReference species="pRab35" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax_eff </ci>
+                  <ci> LRRK2_active </ci>
+                  <apply>
+                    <minus/>
+                    <ci> Rab35_tot </ci>
+                    <ci> pRab35 </ci>
+                  </apply>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km_lrrk2 </ci>
+                  <apply>
+                    <minus/>
+                    <ci> Rab35_tot </ci>
+                    <ci> pRab35 </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="Rab35_dephosphorylation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="pRab35" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <ci> k_dephos </ci>
+              <ci> pRab35 </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="alphaSyn_production" reversible="false">
+        <listOfProducts>
+          <speciesReference species="aSyn" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <ci> k_prod_eff </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="alphaSyn_CMA_degradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="aSyn" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax_CMA </ci>
+                  <ci> LAMP2A </ci>
+                  <ci> aSyn </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km_CMA </ci>
+                  <ci> aSyn </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="alphaSyn_nucleation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="aSyn" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="aggregate" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <ci> k_nuc </ci>
+              <ci> aSyn </ci>
+              <ci> aSyn </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="aggregate_lysosomal_clearance" reversible="false">
+        <listOfReactants>
+          <speciesReference species="aggregate" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> Vmax_clear </ci>
+                  <ci> LAMP2A </ci>
+                  <ci> aggregate </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km_clear </ci>
+                  <ci> aggregate </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="MVB_formation" reversible="false">
+        <listOfProducts>
+          <speciesReference species="MVB" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="pRab35"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> k_MVB </ci>
+                  <ci> pRab35 </ci>
+                  <ci> rab35_block </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km_MVB </ci>
+                  <apply>
+                    <times/>
+                    <ci> pRab35 </ci>
+                    <ci> rab35_block </ci>
+                  </apply>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="MVB_degradation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="MVB" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <ci> k_deg_MVB </ci>
+              <ci> MVB </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="aggregate_loading_into_MVB" reversible="false">
+        <listOfReactants>
+          <speciesReference species="aggregate" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="exosomal" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <listOfModifiers>
+          <modifierSpeciesReference species="MVB"/>
+        </listOfModifiers>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <times/>
+                  <ci> k_load </ci>
+                  <ci> MVB </ci>
+                  <ci> aggregate </ci>
+                </apply>
+                <apply>
+                  <plus/>
+                  <ci> Km_load </ci>
+                  <ci> aggregate </ci>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="exosome_secretion" reversible="false">
+        <listOfReactants>
+          <speciesReference species="exosomal" stoichiometry="1" constant="true"/>
+        </listOfReactants>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <ci> k_secrete </ci>
+              <ci> exosomal </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
