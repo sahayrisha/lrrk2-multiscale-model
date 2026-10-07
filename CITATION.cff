@@ -6,7 +6,6 @@ authors:
   - family-names: "Sahay"
     given-names: "Risha"
 repository-code: "https://github.com/sahayrisha/lrrk2-multiscale-model"
-doi: "[Zenodo DOI, once minted]"
 version: "1.0.0"
 date-released: "2026-10-06"
 license: MIT
