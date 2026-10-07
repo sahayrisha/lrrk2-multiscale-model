@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this model or code, please cite it as below."
+type: software
+title: "Rab35/LAMP-2A Synergy in LRRK2 G2019S Parkinson's Disease: A Mechanistic, Identifiability-Constrained Model"
+authors:
+  - family-names: "Sahay"
+    given-names: "Risha"
+repository-code: "https://github.com/sahayrisha/lrrk2-multiscale-model"
+doi: "[Zenodo DOI, once minted]"
+version: "1.0.0"
+date-released: "[2026-10-06]"
+license: MIT
+keywords:
+  - Parkinson's disease
+  - LRRK2
+  - computational biology
+  - systems biology
+  - alpha-synuclein
+  - mechanistic modeling
+abstract: >-
+  A multiscale, identifiability-constrained computational model testing
+  whether combined Rab35 pathway blockade and LAMP-2A overexpression act
+  synergistically to reduce pathological alpha-synuclein secretion in
+  LRRK2 G2019S Parkinson's disease neurons. Calibrated against literature
+  biomarker ratios, validated against independent held-out experimental
+  data, and uncertainty-quantified via profile likelihood and ensemble
+  sampling.
+</parameter>
