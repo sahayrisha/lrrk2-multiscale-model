@@ -1,4 +1,4 @@
-cff-version: 1.2.0
+cff-version: 1.0.1
 message: "If you use this model or code, please cite it as below."
 type: software
 title: "Rab35/LAMP-2A Synergy in LRRK2 G2019S Parkinson's Disease: A Mechanistic, Identifiability-Constrained Model"
@@ -8,7 +8,7 @@ authors:
 repository-code: "https://github.com/sahayrisha/lrrk2-multiscale-model"
 doi: "[Zenodo DOI, once minted]"
 version: "1.0.0"
-date-released: "[2026-10-06]"
+date-released: "2026-10-06"
 license: MIT
 keywords:
   - Parkinson's disease
@@ -25,4 +25,3 @@ abstract: >-
   biomarker ratios, validated against independent held-out experimental
   data, and uncertainty-quantified via profile likelihood and ensemble
   sampling.
-</parameter>
