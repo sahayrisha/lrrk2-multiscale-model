@@ -172,6 +172,8 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 \*\*Core model\*\*
 
+
+
 \- `pd\_model\_v3.py` — the ODE model, steady-state solver, time-course extension, graph generation. 
 
 \- `calibrate\_v3.py` — calibration via differential evolution; identifiability rank check via sensitivity-matrix SVD.
@@ -188,6 +190,8 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 \*\*Held-out validation scripts\*\*
 
+
+
 \- `validate\_bae2018.py` — V1/V2/V3 (see \*\*Held-out Validation\*\*)
 
 \- `validate\_fan2018\_timecourse.py` — V4 (see \*\*Held-out Validation\*\*)
@@ -199,6 +203,8 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 
 \*\*Structural diagnosis scripts (evidence trail for the validation strucutral findings, see Known Limitations)\*\*
+
+
 
 \- `diagnose\_validation\_failure\_structural\_cause.py` — runs 3 checks to test hypotheses for failure of V2/V3 validation checkpoints(see \*\*Held-out Validation\*\*)
 
@@ -214,6 +220,8 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 \*\*Uncertainty Quantification\*\*
 
+
+
 \- `profile\_and\_uq.py` — uncertainty quantification (profile likelihood + ensemble).
 
 \- `uq\_output` — results and figures produced by `profile\_and\_uq.py`.
@@ -221,6 +229,8 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 
 \*\*Figures\*\*
+
+
 
 \- `generate\_figures\_molecular.py` — generates `Fig1\_v3\_steady\_states.png`, `Fig2\_v3\_synergy.png`, `Fig3\_v3\_therapeutic\_window.png`, and `Fig4\_v3\_identifiability.png`
 
@@ -246,7 +256,13 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 \*\*Documentation\*\*
 
+
+
 \- Model\_Parameters\_v3.xlsx — full parameter table with literature sources, calibration checkpoint definitions, and bounds
+
+
+
+README.md, LICENSE, AI\_USAGE.md, requirements.txt, .gitignore are located at the repository root.
 
 
 
@@ -255,6 +271,28 @@ Uncertainty quantification is performed via profile likelihood (parameter-level)
 
 
 \## How to reproduce
+
+
+
+Setup notes — read before running anything:
+
+
+
+All scripts default to being run from a flat directory (every file in the same folder). If running from this repository's subfolder structure instead, each script that imports another project file has a commented-out block near its top:
+
+
+
+&#x20; # import sys, os
+
+&#x20; # sys.path.insert(0, os.path.join(os.path.dirname(\_\_file\_\_), '..', 'model'))
+
+
+
+Uncomment this block (and the matching block for params\_v3.npy's path, found near each script's data-loading line) if running directly from the subfoldered layout. Both blocks are clearly labeled in comments.
+
+
+
+UQ has two modes: --quick (\~1-2 min, coarse grid) is for catching setup errors only. Do not quote numbers from a quick run; it does not use enough iterations/samples to be trustworthy. Always confirm a quick run looks sane (e.g., the optimizer's best-fit values resemble the calibrated parameters, not the nominal starting guesses) before committing to the full run (python3 profile\_and\_uq.py, \~10-20 min), whose output is what's reported in this project.
 
 
 
